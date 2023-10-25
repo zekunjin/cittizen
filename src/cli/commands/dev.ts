@@ -1,7 +1,9 @@
 import { defineCommand } from 'citty'
 import { resolve } from 'pathe'
+import { defu } from 'defu'
 import { build } from '../../build'
 import { commonArgs } from '../common'
+import { loadOptions } from 'src/options'
 
 export default defineCommand({
   meta: {
@@ -13,6 +15,7 @@ export default defineCommand({
   },
   async run ({ args }) {
     const rootDir = resolve((args.dir || args._dir || '.') as string)
-    await build({ rootDir, tsup: { watch: true } })
+    const config = await loadOptions({ rootDir })
+    await build(defu(config, { tsup: { watch: true } }))
   }
 })

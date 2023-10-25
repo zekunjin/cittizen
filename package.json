@@ -3,8 +3,13 @@
   "version": "0.0.1",
   "description": "Smart CLI builder framewortk powered by citty.",
   "main": "./dist/index.mjs",
+  "types": "./types.d.ts",
+  "bin": {
+    "ctzen": "./dist/cli/index.mjs"
+  },
   "scripts": {
-    "build": "unbuild",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "test": "vitest"
   },
   "repository": {
@@ -34,8 +39,8 @@
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "eslint": "^8.52.0",
+    "jiti": "^1.20.0",
     "typescript": "^5.2.2",
-    "unbuild": "^2.0.0",
     "vitest": "^0.34.6"
   }
 }
