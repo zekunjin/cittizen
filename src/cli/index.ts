@@ -3,7 +3,7 @@ import { defineCommand, runMain } from 'citty'
 import { name, version } from '../../package.json'
 
 const main = defineCommand({
-  meta: { name, version, description: 'Ctzen CLI' },
+  meta: { name, version, description: 'Ctizen CLI' },
   subCommands: {
     dev: () => import('./commands/dev').then(r => r.default),
     build: () => import('./commands/build').then(r => r.default)

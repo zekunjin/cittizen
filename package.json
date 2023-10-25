@@ -1,11 +1,12 @@
 {
-  "name": "ctzen",
+  "name": "ctizen",
   "version": "0.0.1",
   "description": "Smart CLI builder framewortk powered by citty.",
   "main": "./dist/index.mjs",
   "types": "./types.d.ts",
   "bin": {
-    "ctzen": "./dist/cli/index.mjs"
+    "cti": "./dist/cli/index.mjs",
+    "ctizen": "./dist/cli/index.mjs"
   },
   "scripts": {
     "build": "tsup",
@@ -14,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zekunjin/ctzen.git"
+    "url": "git+https://github.com/zekunjin/ctizen.git"
   },
   "keywords": [
     "cli",
@@ -25,9 +26,9 @@
   "author": "zekun.jin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zekunjin/ctzen/issues"
+    "url": "https://github.com/zekunjin/ctizen/issues"
   },
-  "homepage": "https://github.com/zekunjin/ctzen#readme",
+  "homepage": "https://github.com/zekunjin/ctizen#readme",
   "dependencies": {
     "c12": "^1.5.1",
     "citty": "^0.1.4",

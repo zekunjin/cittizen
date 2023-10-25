@@ -1,1 +1,1 @@
-export * from './ctzen'
+export * from './ctizen'
