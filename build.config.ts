@@ -2,7 +2,7 @@ import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
   declaration: true,
-  name: 'cittizen',
+  name: 'ctzen',
   entries: [
     'src/index',
     'src/cli/index'
