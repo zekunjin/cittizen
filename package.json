@@ -1,0 +1,35 @@
+{
+  "name": "cittizen",
+  "version": "0.0.1",
+  "description": "Smart CLI builder framewortk powered by citty.",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zekunjin/cittizen.git"
+  },
+  "keywords": [
+    "cli",
+    "citty",
+    "unjs",
+    "build"
+  ],
+  "author": "zekun.jin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zekunjin/cittizen/issues"
+  },
+  "homepage": "https://github.com/zekunjin/cittizen#readme",
+  "dependencies": {
+    "citty": "^0.1.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "eslint": "^8.52.0",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
+    "vitest": "^0.34.6"
+  }
+}
