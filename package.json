@@ -2,8 +2,9 @@
   "name": "ctzen",
   "version": "0.0.1",
   "description": "Smart CLI builder framewortk powered by citty.",
-  "main": "dist/index.mjs",
+  "main": "./dist/index.mjs",
   "scripts": {
+    "build": "unbuild",
     "test": "vitest"
   },
   "repository": {
@@ -23,7 +24,12 @@
   },
   "homepage": "https://github.com/zekunjin/ctzen#readme",
   "dependencies": {
-    "citty": "^0.1.4"
+    "c12": "^1.5.1",
+    "citty": "^0.1.4",
+    "defu": "^6.1.3",
+    "pathe": "^1.1.1",
+    "tsup": "^7.2.0",
+    "unimport": "^3.4.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
