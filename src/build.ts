@@ -8,32 +8,34 @@ import Unimport from 'unimport/unplugin'
 import type { CtizenConfig } from './types'
 import { cittyImports } from './imports'
 
-const ENTRYPOINT = async (conf: CtizenConfig) => {
+const entrypointTemplate = async (conf: CtizenConfig) => {
   const srcDir = join(conf.rootDir, conf.srcDir)
   const commandsDir = join(srcDir, 'commands', '*')
   const paths = await globby(commandsDir)
-  const subCommands: Record<string, string> = {}
+  const subCommands: string[] = []
 
   paths.forEach((path) => {
     const key = basename(path, extname(path))
-    subCommands[key] = `import('${path}').then(r => r.default)`
+    subCommands.push(`${key}: import('${path}').then(r => r.default)`)
   })
 
-  return `#!/usr/bin/env node
-import { defineCommand, runMain } from 'citty'
-import { description, name, version } from '../package.json'
-const main = defineCommand({
-  meta: { name, version, description },
-  subCommands: { ${Object.entries(subCommands).map(([key, value]) => `${key}: ${value}`).join(',')} }
-})
-runMain(main)
-`
+  const content = `const main = defineCommand({ meta: { name, version, description }, subCommands: { ${subCommands.join(',')} } })`
+
+  const codes = [
+    '#!/usr/bin/env node',
+    'import { defineCommand, runMain } from \'citty\'',
+    'import { description, name, version } from \'../package.json\'',
+    content,
+    'runMain(main)'
+  ]
+
+  return codes.join('\n')
 }
 
 export const prepare = async (conf: CtizenConfig) => {
   await prepareDir(conf.buildDir)
   await fse.ensureFile(join(conf.buildDir, 'index.ts'))
-  const entrypoint = await ENTRYPOINT(conf)
+  const entrypoint = await entrypointTemplate(conf)
   await fse.writeFile(join(conf.buildDir, 'index.ts'), entrypoint)
 }
 
