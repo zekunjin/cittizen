@@ -46,7 +46,7 @@ export const build = (conf: CtizenConfig) => {
   const srcDir = join(conf.rootDir, conf.srcDir)
   const commandsDir = join(srcDir, 'commands')
 
-  const tsupConfig = defu(conf.tsup, {})
+  const tsupConfig = defu(conf.tsup, { outDir: conf.outputDir })
   const unimportConfig = defu(conf.unimport, {
     dts: true,
     presets: [...cittyImports],
