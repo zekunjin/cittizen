@@ -15,11 +15,14 @@ const prepareDir = async (dir: string) => {
   await fse.emptyDir(dir)
 }
 
-export const build = ({ rootDir, tsup, unimport }: CtizenConfig) => {
-  const tsupConfig = defu(tsup ?? {}, {})
-  const unimportConfig = defu(unimport ?? {}, {
+export const build = (conf: CtizenConfig) => {
+  const srcDir = join(conf.rootDir, conf.srcDir)
+  const commandsDir = join(srcDir, 'commands')
+
+  const tsupConfig = defu(conf.tsup, {})
+  const unimportConfig = defu(conf.unimport, {
     dts: true,
-    dirs: [relative('.', join(rootDir ?? '.', 'src', 'commands', '*'))]
+    dirs: [relative('.', join(commandsDir, '*'))]
   })
 
   return tsupBuild({
