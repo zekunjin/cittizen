@@ -13,5 +13,5 @@ const ctizenDefaults: CtizenConfig = {
 
 export const loadOptions = async (configOverrides: Partial<CtizenConfig> = { rootDir: '.' }) => {
   const c12Config = await loadConfig<CtizenConfig>({ name: 'ctizen', cwd: configOverrides.rootDir })
-  return defu(c12Config, { rootDir: configOverrides.rootDir }, ctizenDefaults)
+  return defu(c12Config.config, { rootDir: configOverrides.rootDir }, ctizenDefaults)
 }
