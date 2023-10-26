@@ -5,6 +5,7 @@ import { join, relative } from 'pathe'
 import fse from 'fs-extra'
 import Unimport from 'unimport/unplugin'
 import type { CtizenConfig } from './types'
+import { cittyImports } from './imports'
 
 export const prepare = async () => {
   await prepareDir('.ctizen')
@@ -22,6 +23,7 @@ export const build = (conf: CtizenConfig) => {
   const tsupConfig = defu(conf.tsup, {})
   const unimportConfig = defu(conf.unimport, {
     dts: true,
+    presets: [...cittyImports],
     dirs: [relative('.', join(commandsDir, '*'))]
   })
 
