@@ -16,7 +16,7 @@ export default defineCommand({
   async run ({ args }) {
     const rootDir = resolve((args.dir || args._dir || '.') as string)
     const config = await loadOptions({ rootDir })
-    await prepare()
+    await prepare(config)
     await build(defu(config, { tsup: { watch: false } }))
   }
 })
