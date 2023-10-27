@@ -1,7 +1,7 @@
 {
   "name": "ctizen",
-  "version": "0.0.4",
-  "description": "Smart CLI builder framewortk powered by citty.",
+  "version": "0.0.5",
+  "description": "Smart CLI builder framework powered by citty.",
   "main": "./dist/index.mjs",
   "types": "./types.d.ts",
   "bin": {
