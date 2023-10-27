@@ -1,3 +1,3 @@
 import { CtizenConfig } from './types'
 
-export const defineConfig = (config: CtizenConfig) => config
+export const defineConfig = (config: Partial<CtizenConfig>) => config
