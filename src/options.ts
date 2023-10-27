@@ -4,7 +4,8 @@ import type { CtizenConfig } from './types'
 
 const ctizenDefaults: CtizenConfig = {
   rootDir: '.',
-  srcDir: 'src/',
+  srcDir: '.',
+  commands: 'commands',
   buildDir: '.ctizen',
   outputDir: '.output',
   tsup: {},

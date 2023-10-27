@@ -10,7 +10,7 @@ import { cittyImports } from './imports'
 
 const entrypointTemplate = async (conf: CtizenConfig) => {
   const srcDir = join(conf.rootDir, conf.srcDir)
-  const commandsDir = join(srcDir, 'commands', '*')
+  const commandsDir = join(srcDir, conf.commands, '*')
   const paths = await globby(commandsDir)
   const subCommands: string[] = []
 
@@ -46,7 +46,7 @@ const prepareDir = async (dir: string) => {
 
 export const build = (conf: CtizenConfig) => {
   const srcDir = join(conf.rootDir, conf.srcDir)
-  const commandsDir = join(srcDir, 'commands')
+  const commandsDir = join(srcDir, conf.commands)
   const entrypointDir = join(conf.buildDir, 'index.ts')
 
   const tsupConfig = defu(conf.tsup, { entry: [entrypointDir], outDir: conf.outputDir })
