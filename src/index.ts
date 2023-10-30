@@ -8,11 +8,11 @@ export const defineConfig = (config: Partial<CtizenConfig>) => config
 export const defineMiddleware = (middleware: Middleware) => middleware
 
 export interface CommandMeta {
-  middlewares: Middleware[]
+  middleware: Middleware[]
 }
 
 export const defineCommand = (def: Parameters<typeof defineCittyCommand>['0']) => (meta?: Partial<CommandMeta>) => {
-  const _middlewares = meta?.middlewares ?? []
+  const _middlewares = meta?.middleware ?? []
   if (!_middlewares.length || !def.run) { return defineCittyCommand(def) }
 
   const run = async (ctx: CommandContext) => {
