@@ -4,6 +4,7 @@ import { defu } from 'defu'
 import { basename, extname, join, relative } from 'pathe'
 import fse from 'fs-extra'
 import { globby } from 'globby'
+import { camelCase } from 'scule'
 import Unimport from 'unimport/unplugin'
 import type { CtizenConfig } from './types'
 import { cittyImports } from './imports'
@@ -16,7 +17,7 @@ const entrypointTemplate = async (conf: CtizenConfig) => {
 
   paths.forEach((path) => {
     const key = basename(path, extname(path))
-    subCommands.push(`${key}: import('${path}').then(r => r.default)`)
+    subCommands.push(`${camelCase(key)}: import('${path}').then(r => r.default())`)
   })
 
   const content = `const main = defineCommand({ meta: { name, version, description }, subCommands: { ${subCommands.join(',')} } })`
