@@ -6,6 +6,7 @@ const ctizenDefaults: CtizenConfig = {
   rootDir: '.',
   srcDir: '.',
   commands: 'commands',
+  middleware: 'middleware',
   buildDir: '.ctizen',
   outputDir: '.output',
   tsup: {},

@@ -44,16 +44,19 @@ const prepareDir = async (dir: string) => {
   await fse.emptyDir(dir)
 }
 
+const relativeGlobDir = (path: string) => relative('.', join(path, '*'))
+
 export const build = (conf: CtizenConfig) => {
   const srcDir = join(conf.rootDir, conf.srcDir)
   const commandsDir = join(srcDir, conf.commands)
+  const middlewareDir = join(srcDir, conf.middleware)
   const entrypointDir = join(conf.buildDir, 'index.ts')
 
   const tsupConfig = defu(conf.tsup, { entry: [entrypointDir], outDir: conf.outputDir })
   const unimportConfig = defu(conf.unimport, {
     dts: true,
     presets: [...cittyImports],
-    dirs: [relative('.', join(commandsDir, '*'))]
+    dirs: [relativeGlobDir(commandsDir), relativeGlobDir(middlewareDir)]
   })
 
   return tsupBuild({

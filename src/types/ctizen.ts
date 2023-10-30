@@ -5,6 +5,7 @@ export interface CtizenConfig {
   rootDir: string
   srcDir: string
   commands: string
+  middleware: string
   buildDir: string
   outputDir: string
   tsup: Partial<TsupOptions>
