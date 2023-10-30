@@ -1,7 +1,7 @@
-import { defineCommand as defineCittyCommand } from 'citty'
+import { type CommandContext, defineCommand as defineCittyCommand } from 'citty'
 import { CtizenConfig } from './types'
 
-export type Middleware = () => Promise<boolean | void> | void | boolean
+export type Middleware = (context?: CommandContext) => Promise<boolean | void> | void | boolean
 
 export const defineConfig = (config: Partial<CtizenConfig>) => config
 
@@ -15,8 +15,8 @@ export const defineCommand = (def: Parameters<typeof defineCittyCommand>['0']) =
   const _middlewares = meta?.middlewares ?? []
   if (!_middlewares.length || !def.run) { return defineCittyCommand(def) }
 
-  const run = async (ctx: any) => {
-    const results = await Promise.all(_middlewares.map(m => m()))
+  const run = async (ctx: CommandContext) => {
+    const results = await Promise.all(_middlewares.map(m => m(ctx)))
     const isValidate = !results.includes(false)
     if (!isValidate) { return }
     return def.run?.(ctx)
