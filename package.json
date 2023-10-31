@@ -1,6 +1,6 @@
 {
   "name": "ctizen",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Smart CLI builder framework powered by citty.",
   "main": "./dist/index.mjs",
   "types": "./types.d.ts",
