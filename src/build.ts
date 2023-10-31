@@ -17,7 +17,7 @@ const entrypointTemplate = async (conf: CtizenConfig) => {
 
   paths.forEach((path) => {
     const key = basename(path, extname(path))
-    subCommands.push(`${camelCase(key)}: import('${path}').then(r => r.default())`)
+    subCommands.push(`${camelCase(key)}: import('${path}').then(r => r.default)`)
   })
 
   const content = `const main = defineCommand({ meta: { name, version, description }, subCommands: { ${subCommands.join(',')} } })`

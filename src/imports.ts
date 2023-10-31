@@ -4,6 +4,7 @@ export const cittyImports: Preset[] = [
   {
     from: 'citty',
     imports: [
+      'defineCommand',
       'runCommand',
       'parseArgs',
       'renderUsage',
@@ -13,7 +14,8 @@ export const cittyImports: Preset[] = [
   {
     from: 'ctizen',
     imports: [
-      'defineCommand'
+      'defineConfig',
+      'defineMiddleware'
     ]
   }
 ]

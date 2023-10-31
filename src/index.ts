@@ -1,4 +1,4 @@
-import { type CommandContext, defineCommand as defineCittyCommand } from 'citty'
+import { type CommandContext } from 'citty'
 import { CtizenConfig } from './types'
 
 export type Middleware = (context?: CommandContext) => Promise<boolean | void> | void | boolean
@@ -9,18 +9,4 @@ export const defineMiddleware = (middleware: Middleware) => middleware
 
 export interface CommandMeta {
   middleware: Middleware[]
-}
-
-export const defineCommand = (def: Parameters<typeof defineCittyCommand>['0']) => (meta?: Partial<CommandMeta>) => {
-  const _middlewares = meta?.middleware ?? []
-  if (!_middlewares.length || !def.run) { return defineCittyCommand(def) }
-
-  const run = async (ctx: CommandContext) => {
-    const results = await Promise.all(_middlewares.map(m => m(ctx)))
-    const isValidate = !results.includes(false)
-    if (!isValidate) { return }
-    return def.run?.(ctx)
-  }
-
-  return defineCittyCommand({ ...def, run })
 }
